@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaoqi Wang - Personal Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .contact {
+            margin-top: 10px;
+        }
+        .contact a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .experience-item {
+            margin-bottom: 20px;
+        }
+        .experience-item h3 {
+            margin: 0;
+        }
+        .experience-item .date {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shaoqi Wang</h1>
+        <div class="contact">
+            Email: <a href="mailto:swangek2002@gmail.com">swangek2002@gmail.com</a> | Phone: 336-338-8805 | 
+            LinkedIn: <a href="https://www.linkedin.com/in/shaoqi-wang/" target="_blank">linkedin.com/in/shaoqi-wang</a>
+        </div>
+    </header>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <ul>
+            <li><strong>Programming Languages:</strong> Python, C#, Scala, C++, C, Java, SQL, JavaScript, HTML, CSS.</li>
+            <li><strong>Development and Software Tools:</strong> PyCharm, Visual Studio, Qt Creator, Docker, Anaconda, Ubuntu, Unity, XCode, IntelliJ, 3D Slicer, MATLAB, Figma, Overleaf, etc.</li>
+            <li><strong>Machine Learning:</strong> PyTorch, Scikit-learn, TensorFlow, Keras, NumPy, Pandas, OpenCV, Transformers (Hugging Face), Matplotlib, LLM deployment and fine-tuning.</li>
+            <li><strong>Operating Systems:</strong> Linux, Windows, MacOS.</li>
+        </ul>
+    </section>
+
+    <section id="education">
+        <h2>Education Background</h2>
+        <div class="experience-item">
+            <h3>The University of North Carolina at Chapel Hill (UNC Chapel Hill)</h3>
+            <span class="date">Aug. 2025 – May. 2027</span>
+            <p>Master of Computer Science (GPA: 4.0/4.0)</p>
+            <ul>
+                <li>Courses: Deep Learning, Machine Learning</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Hong Kong University of Science and Technology (HKUST)</h3>
+            <span class="date">Sep. 2021 – July. 2025</span>
+            <p>Bachelor of Computer Science</p>
+            <ul>
+                <li>Courses: Software Engineering, Data Mining, Design and Analysis of Algorithms, Database Management Systems, Undergraduate Research Opportunity Series</li>
+                <li>Awards: HKUST Admission Scholarship (2021–2025), Dean’s List of School of Engineering (2021-2023)</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Delft University of Technology, Netherlands (TU Delft)</h3>
+            <span class="date">Feb. 2024 – July. 2024</span>
+            <p>Exchange Program at the Department of Electrical Engineering, Mathematics, and Computer Science</p>
+            <ul>
+                <li>Courses: Computer Security, Concept of Programming Language, Operating System, Human-Computer Interaction and Computer Network</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Research and Internship Experience</h2>
+        <div class="experience-item">
+            <h3>Research Assistant (RA) Intern, Stanford Info Lab, California</h3>
+            <span class="date">March. 2025 – June. 2025</span>
+            <ul>
+                <li>Implemented a full-stack multi-agent AI application integrating 5+ large language models (GPT-4.5, Claude 3.5, Gemini 2.5 Pro, etc.), designing and coding the front-end web interface and back-end LLM deployment modules from scratch. Optimized cross-model communication and response routing, improving user interaction efficiency by ≈35% and supporting experiments in multi-agent collaboration at Stanford Info Lab.</li>
+                <li>Assisted in evaluating the performance of 5+ commercial LLMs across 10 academic benchmarks, providing quantitative insights into reasoning and efficiency differences that informed model selection for the project.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Project Leader, Generating Songs using Large-Language Models, HKUST, Hong Kong</h3>
+            <span class="date">Sep. 2024 – June. 2025</span>
+            <ul>
+                <li>Led a four-person team to design and implement a multilingual song-generation system from scratch under the supervision of Professor Raymond Chi Wing WONG. Took primary responsibility for programming implementation, directly contributing to two of the three main system modules.</li>
+                <li>Built a full-stack AI music generation platform capable of producing lyrics, melody, vocals, and cover art from text prompts, supporting 4 languages (English, Mandarin, Japanese, Cantonese) with extensibility for 10+ additional languages; experimented with 10+ generative models and developed 3 model training pipelines. Deployed team servers that improved collaboration efficiency by 40% and enabled generation of 100+ complete songs.</li>
+                <li>Independently developed an automatic human voice synthesis module, later integrated into OpenUtau, one of the most popular open-source music production tools.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Software Engineer & Research Intern, Braillic Limited, Hong Kong</h3>
+            <span class="date">July. 2024 – June. 2025</span>
+            <ul>
+                <li>Implemented a machine learning–driven facial landmark detection and alignment system on Microsoft HoloLens, automatically converting captured RGBD data into 3D point cloud (PCD) models and performing real-time facial alignment with <5 mm spatial error. This system established the technical foundation for subsequent MRI-based 3D model alignment with real patients in the company’s surgical AR pipeline.</li>
+                <li>Developed AI-driven medical image segmentation models for MRI data, utilizing 3D Slicer for precise organ annotation and dataset preparation, achieving a Dice coefficient of 0.87 on 200+ patient cases and automating ≈70% of manual segmentation workload to support surgical visualization of organ structures.</li>
+                <li>Represented the company at the NVIDIA Inception Showcase - Hong Kong, receiving the Excellence Certificate, and awarded the STEM Internship Scheme (Summer & Winter 2024) for outstanding innovation in AI and AR–based medical imaging.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Research Intern, Institute for Network Sciences and Cyberspace, Tsinghua University, Beijing</h3>
+            <span class="date">Feb. 2023– Feb. 2024 (Seasonal)</span>
+            <ul>
+                <li>Conducted AI-driven autonomous system (AS) classification and IP ownership analysis on 50M+ historic BGP records under the supervision of Prof. Yang Jiahai, improving classification accuracy and scalability for large-scale network datasets.</li>
+                <li>Optimized the domain name extraction algorithm, reducing data-matching and classification runtime by ≈65%, significantly accelerating the AS organization identification workflow.</li>
+                <li>Developed an AS-to-ORG mapping database by designing an incremental update mechanism that increased data freshness and system efficiency by 40%, integrating periodic updates from CAIDA.</li>
+                <li>Explored advanced techniques in digital certificate–based classification, NAT device identification, and network data-sharing architecture, contributing to internal reports and research prototypes under the supervision of Dr. Song Guanglei.</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <h3>Research Assistant (RA), Knowledge Discovery over Databases, HKUST, Hong Kong</h3>
+            <span class="date">Jan. 2023 – Feb. 2024</span>
+            <ul>
+                <li>Explored advanced research topics in Deep Learning and Data Mining under the supervision of Prof. Raymond Chi Wing Wong, focusing on representation learning and feature extraction using Vision Transformer–based architectures.</li>
+                <li>Implemented a Vision Transformer–based Triplet Autoencoder for similarity-based classification, and through fine-tuning and hyperparameter optimization, achieved >92% accuracy on benchmark datasets, outperforming baseline autoencoder models by ≈10 percentage points, supporting the group’s ongoing research on knowledge discovery from structured data.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="languages-interests">
+        <h2>Languages and Interests</h2>
+        <ul>
+            <li><strong>English:</strong> Proficient (IELTS 7.5 and GRE 319, strong academic writing and verbal communication skills).</li>
+            <li><strong>Chinese:</strong> Native in Mandarin; basic conversational proficiency in Cantonese.</li>
+            <li><strong>Piano:</strong> Certified Level 10 pianist by the Chinese Musicians' Association.</li>
+            <li><strong>Taekwondo:</strong> 3rd Dan black belt certified by the Chinese Taekwondo Association.</li>
+            <li><strong>Traveling:</strong> Explored 15 countries across Europe, Oceania, North America, and Asia, embracing diverse cultures and global perspectives.</li>
+        </ul>
+    </section>
+</body>
+</html>
