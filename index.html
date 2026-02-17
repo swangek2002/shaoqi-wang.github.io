@@ -1,166 +1,830 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaoqi Wang - Personal Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        .contact {
-            margin-top: 10px;
-        }
-        .contact a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .experience-item {
-            margin-bottom: 20px;
-        }
-        .experience-item h3 {
-            margin: 0;
-        }
-        .experience-item .date {
-            font-style: italic;
-            color: #666;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaoqi Wang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #111118;
+  --bg-card-hover: #16161f;
+  --border: #1e1e2a;
+  --border-accent: #2a2a3a;
+  --text: #e4e4ec;
+  --text-secondary: #8888a0;
+  --text-muted: #55556a;
+  --accent: #6c8aff;
+  --accent-dim: rgba(108, 138, 255, 0.08);
+  --accent-glow: rgba(108, 138, 255, 0.15);
+  --green: #4ade80;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Outfit', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* --- NAV --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.nav-logo span { color: var(--text-muted); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--text-secondary);
+  transition: all 0.3s;
+}
+
+/* --- CONTAINER --- */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- HERO --- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.3;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 20%, transparent 70%);
+}
+
+.hero-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-label .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.hero-links {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.hero-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-family: var(--mono);
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.25s;
+}
+
+.hero-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.hero-links a svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- SECTIONS --- */
+section {
+  padding: 5rem 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.section-header .line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-header .tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* --- EDUCATION --- */
+.edu-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.edu-item:last-child { border-bottom: none; }
+
+.edu-date {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding-top: 3px;
+}
+
+.edu-school {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.edu-degree {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.edu-gpa {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 0.3rem;
+}
+
+/* --- EXPERIENCE --- */
+.exp-item {
+  position: relative;
+  padding: 1.8rem;
+  margin-bottom: 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.exp-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+  transform: translateY(-1px);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exp-role {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.exp-date {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.exp-company {
+  font-size: 0.88rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.exp-bullets li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+/* --- SKILLS --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+.skill-category {
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.skill-category:hover {
+  border-color: var(--border-accent);
+}
+
+.skill-category-title {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.skill-tag {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  padding: 0.3rem 0.7rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.skill-tag:hover {
+  color: var(--text);
+  border-color: var(--border-accent);
+  background: rgba(255,255,255,0.05);
+}
+
+/* --- CONTACT --- */
+.contact-section {
+  text-align: center;
+  padding: 6rem 0;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+.contact-section p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 440px;
+  margin: 0 auto 2rem;
+  font-weight: 300;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-family: var(--mono);
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.25s;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.contact-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* --- FOOTER --- */
+footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+footer p {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* --- FADE-IN ANIMATIONS --- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- MOBILE --- */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  z-index: 99;
+}
+
+.mobile-menu.open { display: block; }
+
+.mobile-menu a {
+  display: block;
+  padding: 0.7rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .edu-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .exp-header {
+    flex-direction: column;
+  }
+
+  .hero h1 { font-size: 2.2rem; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Shaoqi Wang</h1>
-        <div class="contact">
-            Email: <a href="mailto:swangek2002@gmail.com">swangek2002@gmail.com</a> | Phone: 336-338-8805 | 
-            LinkedIn: <a href="https://www.linkedin.com/in/shaoqi-wang/" target="_blank">linkedin.com/in/shaoqi-wang</a>
-        </div>
-    </header>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <ul>
-            <li><strong>Programming Languages:</strong> Python, C#, Scala, C++, C, Java, SQL, JavaScript, HTML, CSS.</li>
-            <li><strong>Development and Software Tools:</strong> PyCharm, Visual Studio, Qt Creator, Docker, Anaconda, Ubuntu, Unity, XCode, IntelliJ, 3D Slicer, MATLAB, Figma, Overleaf, etc.</li>
-            <li><strong>Machine Learning:</strong> PyTorch, Scikit-learn, TensorFlow, Keras, NumPy, Pandas, OpenCV, Transformers (Hugging Face), Matplotlib, LLM deployment and fine-tuning.</li>
-            <li><strong>Operating Systems:</strong> Linux, Windows, MacOS.</li>
-        </ul>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">shaoqi<span>.wang</span></div>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <section id="education">
-        <h2>Education Background</h2>
-        <div class="experience-item">
-            <h3>The University of North Carolina at Chapel Hill (UNC Chapel Hill)</h3>
-            <span class="date">Aug. 2025 – May. 2027</span>
-            <p>Master of Computer Science (GPA: 4.0/4.0)</p>
-            <ul>
-                <li>Courses: Deep Learning, Machine Learning</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Hong Kong University of Science and Technology (HKUST)</h3>
-            <span class="date">Sep. 2021 – July. 2025</span>
-            <p>Bachelor of Computer Science</p>
-            <ul>
-                <li>Courses: Software Engineering, Data Mining, Design and Analysis of Algorithms, Database Management Systems, Undergraduate Research Opportunity Series</li>
-                <li>Awards: HKUST Admission Scholarship (2021–2025), Dean’s List of School of Engineering (2021-2023)</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Delft University of Technology, Netherlands (TU Delft)</h3>
-            <span class="date">Feb. 2024 – July. 2024</span>
-            <p>Exchange Program at the Department of Electrical Engineering, Mathematics, and Computer Science</p>
-            <ul>
-                <li>Courses: Computer Security, Concept of Programming Language, Operating System, Human-Computer Interaction and Computer Network</li>
-            </ul>
-        </div>
-    </section>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#education" onclick="closeMenu()">Education</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
 
-    <section id="experience">
-        <h2>Research and Internship Experience</h2>
-        <div class="experience-item">
-            <h3>Research Assistant (RA) Intern, Stanford Info Lab, California</h3>
-            <span class="date">March. 2025 – June. 2025</span>
-            <ul>
-                <li>Implemented a full-stack multi-agent AI application integrating 5+ large language models (GPT-4.5, Claude 3.5, Gemini 2.5 Pro, etc.), designing and coding the front-end web interface and back-end LLM deployment modules from scratch. Optimized cross-model communication and response routing, improving user interaction efficiency by ≈35% and supporting experiments in multi-agent collaboration at Stanford Info Lab.</li>
-                <li>Assisted in evaluating the performance of 5+ commercial LLMs across 10 academic benchmarks, providing quantitative insights into reasoning and efficiency differences that informed model selection for the project.</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Project Leader, Generating Songs using Large-Language Models, HKUST, Hong Kong</h3>
-            <span class="date">Sep. 2024 – June. 2025</span>
-            <ul>
-                <li>Led a four-person team to design and implement a multilingual song-generation system from scratch under the supervision of Professor Raymond Chi Wing WONG. Took primary responsibility for programming implementation, directly contributing to two of the three main system modules.</li>
-                <li>Built a full-stack AI music generation platform capable of producing lyrics, melody, vocals, and cover art from text prompts, supporting 4 languages (English, Mandarin, Japanese, Cantonese) with extensibility for 10+ additional languages; experimented with 10+ generative models and developed 3 model training pipelines. Deployed team servers that improved collaboration efficiency by 40% and enabled generation of 100+ complete songs.</li>
-                <li>Independently developed an automatic human voice synthesis module, later integrated into OpenUtau, one of the most popular open-source music production tools.</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Software Engineer & Research Intern, Braillic Limited, Hong Kong</h3>
-            <span class="date">July. 2024 – June. 2025</span>
-            <ul>
-                <li>Implemented a machine learning–driven facial landmark detection and alignment system on Microsoft HoloLens, automatically converting captured RGBD data into 3D point cloud (PCD) models and performing real-time facial alignment with <5 mm spatial error. This system established the technical foundation for subsequent MRI-based 3D model alignment with real patients in the company’s surgical AR pipeline.</li>
-                <li>Developed AI-driven medical image segmentation models for MRI data, utilizing 3D Slicer for precise organ annotation and dataset preparation, achieving a Dice coefficient of 0.87 on 200+ patient cases and automating ≈70% of manual segmentation workload to support surgical visualization of organ structures.</li>
-                <li>Represented the company at the NVIDIA Inception Showcase - Hong Kong, receiving the Excellence Certificate, and awarded the STEM Internship Scheme (Summer & Winter 2024) for outstanding innovation in AI and AR–based medical imaging.</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Research Intern, Institute for Network Sciences and Cyberspace, Tsinghua University, Beijing</h3>
-            <span class="date">Feb. 2023– Feb. 2024 (Seasonal)</span>
-            <ul>
-                <li>Conducted AI-driven autonomous system (AS) classification and IP ownership analysis on 50M+ historic BGP records under the supervision of Prof. Yang Jiahai, improving classification accuracy and scalability for large-scale network datasets.</li>
-                <li>Optimized the domain name extraction algorithm, reducing data-matching and classification runtime by ≈65%, significantly accelerating the AS organization identification workflow.</li>
-                <li>Developed an AS-to-ORG mapping database by designing an incremental update mechanism that increased data freshness and system efficiency by 40%, integrating periodic updates from CAIDA.</li>
-                <li>Explored advanced techniques in digital certificate–based classification, NAT device identification, and network data-sharing architecture, contributing to internal reports and research prototypes under the supervision of Dr. Song Guanglei.</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Research Assistant (RA), Knowledge Discovery over Databases, HKUST, Hong Kong</h3>
-            <span class="date">Jan. 2023 – Feb. 2024</span>
-            <ul>
-                <li>Explored advanced research topics in Deep Learning and Data Mining under the supervision of Prof. Raymond Chi Wing Wong, focusing on representation learning and feature extraction using Vision Transformer–based architectures.</li>
-                <li>Implemented a Vision Transformer–based Triplet Autoencoder for similarity-based classification, and through fine-tuning and hyperparameter optimization, achieved >92% accuracy on benchmark datasets, outperforming baseline autoencoder models by ≈10 percentage points, supporting the group’s ongoing research on knowledge discovery from structured data.</li>
-            </ul>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <div class="hero-label">
+      <span class="dot"></span>
+      Open to opportunities
+    </div>
+    <h1>Hi, I'm <span class="gradient">Shaoqi Wang</span></h1>
+    <p class="hero-desc">
+      CS Master's student at UNC Chapel Hill. I build things at the intersection of AI/ML systems and software engineering — from multi-model LLM pipelines to real-time 3D medical imaging.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:swangek2002@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/shaoqi-wang/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="tel:336-338-8805">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Phone
+      </a>
+    </div>
+  </div>
+</section>
 
-    <section id="languages-interests">
-        <h2>Languages and Interests</h2>
-        <ul>
-            <li><strong>English:</strong> Proficient (IELTS 7.5 and GRE 319, strong academic writing and verbal communication skills).</li>
-            <li><strong>Chinese:</strong> Native in Mandarin; basic conversational proficiency in Cantonese.</li>
-            <li><strong>Piano:</strong> Certified Level 10 pianist by the Chinese Musicians' Association.</li>
-            <li><strong>Taekwondo:</strong> 3rd Dan black belt certified by the Chinese Taekwondo Association.</li>
-            <li><strong>Traveling:</strong> Explored 15 countries across Europe, Oceania, North America, and Asia, embracing diverse cultures and global perspectives.</li>
-        </ul>
-    </section>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Education</h2>
+      <div class="line"></div>
+      <span class="tag">03</span>
+    </div>
+
+    <div class="fade-up">
+      <div class="edu-item">
+        <div class="edu-date">Aug 2025 – May 2027</div>
+        <div>
+          <div class="edu-school">University of North Carolina at Chapel Hill</div>
+          <div class="edu-degree">Master of Computer Science</div>
+          <div class="edu-gpa">GPA: 4.0 / 4.0</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-date">Feb 2024 – Jul 2024</div>
+        <div>
+          <div class="edu-school">Delft University of Technology</div>
+          <div class="edu-degree">Exchange Program — Dept. of EEMCS</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-date">Sep 2021 – Jul 2025</div>
+        <div>
+          <div class="edu-school">Hong Kong University of Science and Technology</div>
+          <div class="edu-degree">Bachelor of Computer Science</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Experience</h2>
+      <div class="line"></div>
+      <span class="tag">04</span>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-header">
+        <div class="exp-role">Research Assistant Intern</div>
+        <div class="exp-date">Mar 2025 – Jun 2025</div>
+      </div>
+      <div class="exp-company">Stanford Info Lab, California</div>
+      <ul class="exp-bullets">
+        <li>Implemented a multi-model LLM agent pipeline using magentic and LiteLLM, dynamically routing between 10+ commercial LLMs and Alpha Vantage APIs to support multi-step tool-augmented reasoning. Built the full application with FastAPI, Pydantic, and SSE-based streaming on the backend with a JavaScript frontend, improving user interaction efficiency by ≈35%.</li>
+        <li>Built evaluation scripts to compare 5+ commercial LLMs across 10 academic benchmarks, logging accuracy, latency, and cost metrics. Produced quantitative analyses of reasoning quality and efficiency trade-offs that informed model selection and routing strategies.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-header">
+        <div class="exp-role">Software Engineer & AI Research Intern</div>
+        <div class="exp-date">Jul 2024 – Jun 2025</div>
+      </div>
+      <div class="exp-company">Braillic Limited, Hong Kong</div>
+      <ul class="exp-bullets">
+        <li>Built a real-time facial-landmark detection and alignment pipeline using a lightweight CNN detector and a 3D-landmark regression model. Implemented head-pose estimation and metric-3D reconstruction, deployed on HoloLens via TensorFlow Lite. Enabled real-time 3D point clouds and sub-5mm MRI-to-face alignment for AR surgical applications.</li>
+        <li>Developed whole-brain MRI segmentation models using MONAI and a 3D encoder-decoder CNN architecture. Incorporated domain-randomised synthetic data techniques inspired by SynthSeg, achieving ≈0.88 Dice for whole-brain multi-structure segmentation across 200+ patient cases.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-header">
+        <div class="exp-role">Project Leader</div>
+        <div class="exp-date">Sep 2024 – Jun 2025</div>
+      </div>
+      <div class="exp-company">Generating Songs using LLMs — HKUST, Hong Kong</div>
+      <ul class="exp-bullets">
+        <li>Built an AI-driven multilingual melody-generation system combining a pretrained Transformer language model from Fairseq with a SQLite-based melodic phrase retrieval engine and harmonic-rule filtering. Designed lyric-aware generation using TextBlob and cnsenti for multilingual NLP processing.</li>
+        <li>Developed an automated singing-voice synthesis module integrated into OpenUtau, orchestrating GPU-accelerated ONNX acoustic models through DirectML backend, multilingual phonemizers, and the full MIDI→phoneme→render pipeline via C# MVVM interfaces.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-header">
+        <div class="exp-role">Research Assistant Intern</div>
+        <div class="exp-date">Feb 2023 – Feb 2024</div>
+      </div>
+      <div class="exp-company">Institute for Network Sciences and Cyberspace, Tsinghua University, Beijing</div>
+      <ul class="exp-bullets">
+        <li>Built a network-measurement and ML pipeline ingesting 50M+ historic BGP records and WHOIS data, scanning IPv6 endpoints with zgrab2 TLS probes, and extracting X.509 certificate subjects/SANs to support AI-driven autonomous-system classification at Internet scale.</li>
+        <li>Optimized the domain and organization extraction layer by redesigning DNS PTR/AAAA lookups and JSON parsing with jq and batched zgrab2 scans, reducing data-matching and classification runtime by ≈65%.</li>
+        <li>Designed an incremental AS-to-organization mapping database merging CAIDA AS2ORG snapshots, TLS certificate metadata and DNS-derived names, improving mapping freshness and system efficiency by ≈40%.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Technical Skills</h2>
+      <div class="line"></div>
+      <span class="tag">07</span>
+    </div>
+
+    <div class="skills-grid fade-up">
+      <div class="skill-category">
+        <div class="skill-category-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Scala</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">AI / ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">MONAI</span>
+          <span class="skill-tag">HuggingFace</span>
+          <span class="skill-tag">Fairseq</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">LiteLLM</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Pydantic</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <div class="skill-category-title">Tools & Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">ONNX Runtime</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Unity</span>
+          <span class="skill-tag">3D Slicer</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Ubuntu</span>
+          <span class="skill-tag">Figma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container fade-up">
+    <h2>Get In Touch</h2>
+    <p>I'm always open to discussing new opportunities, research collaborations, or interesting projects.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:swangek2002@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        swangek2002@gmail.com
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/shaoqi-wang/" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2025 Shaoqi Wang. Built with care.</p>
+  </div>
+</footer>
+
+<script>
+// Scroll-triggered fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.style.color = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--text)';
+    }
+  });
+});
+</script>
 </body>
 </html>
